@@ -9,6 +9,7 @@ import HabitsCharts from "@/components/habits-charts"
 import { getHabits, saveHabits } from "@/lib/local-storage"
 import type { Habit, HabitLog } from "@/lib/types"
 
+
 export default function HabitsTracker() {
   const [habits, setHabits] = useState<Habit[]>([])
   const [view, setView] = useState<"week" | "month" | "overall">("week")
@@ -114,7 +115,9 @@ export default function HabitsTracker() {
               </TabsTrigger>
             </TabsList>
           </div>
-          <HabitsCharts habits={habits} view={view} />
+          <HabitsCharts habits={habits} view={view} onDeleteHabit={function (habitId: string): void {
+            console.log("onDeleteHabit")
+          } } />
         </TabsContent>
       </Tabs>
     </motion.div>

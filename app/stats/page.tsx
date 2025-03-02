@@ -10,11 +10,11 @@ import { Maximize2, Calendar, BarChart2 } from "lucide-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import MonthlyStats from "@/components/monthly-stats"
-import { Habit, HabitsChartsProps } from "@/lib/types"
+import { Habit, View } from "@/lib/types"
 
 export default function StatsPage() {
   const [habits, setHabits] = useState<Habit[]>([])
-  const [view, setView] = useState<"week" | "month" | "overall">("overall")
+  const [view, setView] = useState<View>("overall")
   const [fullscreenChart, setFullscreenChart] = useState(false)
 
   useEffect(() => {

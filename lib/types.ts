@@ -1,19 +1,16 @@
 export interface HabitLog {
-  date: string
-  value: boolean | number
+  date: string;
+  value: boolean | number;
 }
 
 export interface Habit {
-  id: string
-  name: string
-  frequency: "daily" | "weekly" | "custom"
-  completionType: "boolean" | "percentage"
-  selectedDays: number[] // 0 = Monday, 1 = Tuesday, etc.
-  logs: HabitLog[]
-  createdAt: string
+  id: string;
+  name: string;
+  frequency: "daily" | "weekly" | "custom";
+  completionType: "boolean" | "percentage";
+  selectedDays: number[]; // 0 = Monday, 1 = Tuesday, etc.
+  logs: HabitLog[];
+  createdAt: string;
 }
 
-export interface HabitsChartsProps {
-  habits: Habit[]
-  view: "week" | "month" | "overall"
-}
+export type View = "week" | "month" | "overall";

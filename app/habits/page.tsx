@@ -1,22 +1,13 @@
 "use client";
 
-import { useState, useEffect, Dispatch, SetStateAction } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import HabitsTracker from "@/components/habits-tracker";
 import HabitsCharts from "@/components/habits-charts";
 import { getHabits, saveHabits } from "@/lib/local-storage";
 import type { Habit } from "@/lib/types";
 import { useToast } from "@/components/ui/use-toast";
-import React from "react";
-
-interface HabitsTrackerProps {
-  habits: Habit[];
-  setHabits: Dispatch<SetStateAction<Habit[]>>;
-}
-
-const HabitsTracker: React.FC<HabitsTrackerProps> = ({ habits, setHabits }) => {
-  return <div>{/* Habits Tracker Content */}</div>;
-};
 
 export default function HabitsPage() {
   const [habits, setHabits] = useState<Habit[]>([]);
@@ -29,7 +20,7 @@ export default function HabitsPage() {
     }
   }, []);
 
-  const onDeleteHabit = (habitId: string) => {
+  const onDeleteHabit = (habitId: string): void => {
     const updatedHabits = habits.filter((habit) => habit.id !== habitId);
     setHabits(updatedHabits);
     saveHabits(updatedHabits);
@@ -56,8 +47,10 @@ export default function HabitsPage() {
             height={100}
           />
         </div>
-        <HabitsTracker habits={habits} setHabits={setHabits} />
-        <HabitsCharts habits={habits} onDeleteHabit={onDeleteHabit} />
+        <HabitsTracker
+        // habits={habits} setHabits={setHabits}
+        />
+        {/* <HabitsCharts habits={habits} onDeleteHabit={onDeleteHabit} /> */}
       </motion.div>
     </main>
   );

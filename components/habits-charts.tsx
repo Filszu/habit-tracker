@@ -18,7 +18,7 @@ import {
   AreaChart,
   Area,
 } from "recharts"
-import type { Habit } from "@/lib/types"
+import type { Habit, View,} from "@/lib/types"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -28,12 +28,13 @@ import { useToast } from "@/components/ui/use-toast"
 
 interface HabitsChartsProps {
   habits: Habit[]
-  onDeleteHabit: (habitId: string) => void
+  onDeleteHabit?: (habitId: string) => void
+  view?: View
 }
 
 export default function HabitsCharts({ habits, onDeleteHabit }: HabitsChartsProps) {
   const [selectedHabits, setSelectedHabits] = useState<Set<string>>(new Set(habits.map((h) => h.id)))
-  const [view, setView] = useState<"week" | "month" | "overall">("week")
+  const [view, setView] = useState<View>("week")
   const [chartData, setChartData] = useState<any[]>([])
   const [areaChartData, setAreaChartData] = useState<any[]>([])
   const { toast } = useToast()
@@ -108,11 +109,21 @@ export default function HabitsCharts({ habits, onDeleteHabit }: HabitsChartsProp
   }
 
   const handleDeleteHabit = (habitId: string) => {
-    onDeleteHabit(habitId)
-    toast({
-      title: "Habit deleted",
-      description: "The habit has been successfully removed.",
-    })
+    if (onDeleteHabit) {
+      onDeleteHabit(habitId)
+      toast({
+        title: "Habit deleted",
+        description: "The habit has been successfully removed.",
+      })
+    }
+    else{
+      toast({
+        title: "Error",
+        description: "The habit could not be deleted.",
+      })
+
+    }
+    
   }
 
   const filteredHabits = habits.filter((habit) => selectedHabits.has(habit.id))
