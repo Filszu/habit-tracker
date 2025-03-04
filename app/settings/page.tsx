@@ -13,6 +13,7 @@ import { Coffee, Heart, Download, Save, Share2, Upload } from "lucide-react"
 import { getHabits, saveHabits } from "@/lib/local-storage"
 import { useToast } from "@/components/ui/use-toast"
 import type { Habit } from "@/lib/types"
+import Link from "next/link"
 
 export default function SettingsPage() {
   const [userName, setUserName] = useState("")
@@ -170,7 +171,7 @@ export default function SettingsPage() {
             <CardContent className="space-y-4">
               <div className="flex flex-col space-y-2">
                 <p className="text-sm text-gray-600">Export your habits data as a JSON file for backup or analysis.</p>
-                <div className="flex items-center space-x-2">
+                <div className="flex flex-col sm:flex-row gap-2">
                   <Button onClick={exportData} className="flex-1">
                     <Download className="h-4 w-4 mr-2" />
                     Export Data as JSON
@@ -215,17 +216,17 @@ export default function SettingsPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Button variant="outline" className="h-24 space-y-2">
                   <Coffee className="h-6 w-6" />
-                  <div>
+                  <Link href="https://buymeacoffee.com/filshu">
                     <div className="font-semibold">Buy me a coffee</div>
                     <div className="text-sm text-muted-foreground">$5</div>
-                  </div>
+                  </Link>
                 </Button>
                 <Button variant="outline" className="h-24 space-y-2">
                   <Heart className="h-6 w-6 text-red-500" />
-                  <div>
+                  <Link href="https://buymeacoffee.com/filshu">
                     <div className="font-semibold">Become a supporter</div>
                     <div className="text-sm text-muted-foreground">$10/month</div>
-                  </div>
+                  </Link>
                 </Button>
               </div>
             </CardContent>

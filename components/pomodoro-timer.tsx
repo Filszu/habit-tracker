@@ -156,7 +156,7 @@ export default function PomodoroTimer() {
         />
       </div>
 
-      <div className="flex space-x-2 mb-4 flex-wrap">
+      <div className="flex space-x-2 mb-4 flex-wrap justify-center gap-2">
         <Button
           variant={timerType === "pomodoro" ? "default" : "outline"}
           onClick={() => setTimerType("pomodoro")}
@@ -182,7 +182,7 @@ export default function PomodoroTimer() {
 
       <div className="text-5xl font-bold">{formatTime(time)}</div>
 
-      <div className="flex space-x-2 flex-wrap justify-center"> 
+      <div className="flex space-x-2 flex-wrap justify-center gap-2 "> 
         <Button onClick={toggleTimer} variant="outline" size="lg">
           {isActive ? <Pause className="h-4 w-4 mr-2" /> : <Play className="h-4 w-4 mr-2" />}
           {isActive ? "Pause" : "Start"}
