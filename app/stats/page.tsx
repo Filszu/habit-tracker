@@ -1,24 +1,22 @@
 "use client"
 
 import { motion } from "framer-motion"
-import Image from "next/image"
-import HabitsCharts from "@/components/habits-charts"
-import { getHabits } from "@/lib/local-storage"
 import { useState, useEffect } from "react"
+import Image from "next/image"
+import { getHabits } from "@/lib/local-storage"
 import { Button } from "@/components/ui/button"
-import { Maximize2, Calendar, BarChart2 } from "lucide-react"
+import { Calendar, BarChart2 } from "lucide-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import MonthlyStats from "@/components/monthly-stats"
-import { Habit, View } from "@/lib/types"
+import StatsCharts from "@/components/stats-charts"
+import { Habit } from "@/lib/types"
 
 export default function StatsPage() {
   const [habits, setHabits] = useState<Habit[]>([])
-  const [view, setView] = useState<View>("overall")
-  const [fullscreenChart, setFullscreenChart] = useState(false)
+  const [view, setView] = useState<"week" | "month" | "overall">("overall")
 
   useEffect(() => {
-    const savedHabits = getHabits()
+    const savedHabits = getHabits() as Habit[]
     if (savedHabits) {
       setHabits(savedHabits)
     }
@@ -123,26 +121,9 @@ export default function StatsPage() {
                   Overall
                 </Button>
               </div>
-
-              <Dialog open={fullscreenChart} onOpenChange={setFullscreenChart}>
-                <DialogTrigger asChild>
-                  <Button variant="outline" size="sm">
-                    <Maximize2 className="h-4 w-4 mr-2" />
-                    Fullscreen
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="max-w-6xl w-[90vw] h-[80vh]">
-                  <DialogHeader>
-                    <DialogTitle>Detailed Statistics</DialogTitle>
-                  </DialogHeader>
-                  <div className="h-full py-4">
-                    <HabitsCharts habits={habits} view={view} />
-                  </div>
-                </DialogContent>
-              </Dialog>
             </div>
 
-            <HabitsCharts habits={habits} view={view} />
+            <StatsCharts habits={habits} view={view} />
           </TabsContent>
           <TabsContent value="monthly" className="mt-4">
             <MonthlyStats habits={habits} />

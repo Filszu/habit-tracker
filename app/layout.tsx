@@ -10,34 +10,33 @@ import { ToastProvider } from "@/components/toast-provider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Habits Tracker - Build Better Habits and Track Your Progress",
+  title: "KaizenSteps - Build Better Habits and Track Your Progress",
   description:
     "Track your daily habits, achieve your goals, and become the best version of yourself with our free habit tracking app. Features include Pomodoro timer, statistics, and progress tracking.",
-  keywords: "habits tracker, habit building, productivity, goal tracking, pomodoro timer, personal development",
+  keywords: "kaizensteps, habit building, productivity, goal tracking, pomodoro timer, personal development, kaizen",
   authors: [{ name: "Filshu" }],
   openGraph: {
-    title: "Habits Tracker - Build Better Habits",
+    title: "KaizenSteps - Build Better Habits",
     description: "Track your habits and achieve your goals with our free habit tracking app",
     type: "website",
-    url: "https://habits-tracker.vercel.app",
+    url: "https://kaizensteps.vercel.app",
     images: [
       {
         url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Charts--Streamline-Manchester-Tk5dhk8YVjFcUQugxTFLUraQtqoQTB.png",
         width: 1200,
         height: 630,
-        alt: "Habits Tracker App",
+        alt: "KaizenSteps App",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Habits Tracker - Build Better Habits",
+    title: "KaizenSteps - Build Better Habits",
     description: "Track your habits and achieve your goals with our free habit tracking app",
     images: [
       "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Charts--Streamline-Manchester-Tk5dhk8YVjFcUQugxTFLUraQtqoQTB.png",
     ],
   },
-    generator: 'v0.dev'
 }
 
 export default function RootLayout({
@@ -66,6 +65,3 @@ export default function RootLayout({
   )
 }
 
-
-
-import './globals.css'

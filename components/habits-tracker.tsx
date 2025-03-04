@@ -5,14 +5,11 @@ import { motion } from "framer-motion"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import HabitForm from "@/components/habit-form"
 import HabitsList from "@/components/habits-list"
-import HabitsCharts from "@/components/habits-charts"
 import { getHabits, saveHabits } from "@/lib/local-storage"
 import type { Habit, HabitLog } from "@/lib/types"
 
-
 export default function HabitsTracker() {
   const [habits, setHabits] = useState<Habit[]>([])
-  const [view, setView] = useState<"week" | "month" | "overall">("week")
 
   useEffect(() => {
     const savedHabits = getHabits()
@@ -55,16 +52,22 @@ export default function HabitsTracker() {
     saveHabits(updatedHabits)
   }
 
+  const updateHabit = (updatedHabit: Habit) => {
+    const updatedHabits = habits.map((habit) => (habit.id === updatedHabit.id ? updatedHabit : habit))
+    setHabits(updatedHabits)
+    saveHabits(updatedHabits)
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="max-w-4xl mx-auto"
+      className="max-w-6xl mx-auto"
     >
       <div className="flex flex-col items-center mb-8">
         <motion.h1
-          className="text-4xl md:text-5xl font-handwriting text-primary mb-2 text-center"
+          className="text-6xl md:text-5xl font-handwriting text-primary mb-2 text-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.8 }}
@@ -82,42 +85,16 @@ export default function HabitsTracker() {
       <HabitForm onAddHabit={addHabit} />
 
       <Tabs defaultValue="track" className="mt-8">
-        <TabsList className="grid w-full grid-cols-2">
+        <TabsList className="grid w-full grid-cols-1">
           <TabsTrigger value="track">Track Habits</TabsTrigger>
-          <TabsTrigger value="stats">Statistics</TabsTrigger>
         </TabsList>
         <TabsContent value="track" className="mt-4">
-          <HabitsList habits={habits} onUpdateLog={updateHabitLog} onDeleteHabit={deleteHabit} />
-        </TabsContent>
-        <TabsContent value="stats" className="mt-4">
-          <div className="mb-4">
-            <TabsList>
-              <TabsTrigger
-                value="week"
-                onClick={() => setView("week")}
-                className={view === "week" ? "bg-primary text-primary-foreground" : ""}
-              >
-                Weekly
-              </TabsTrigger>
-              <TabsTrigger
-                value="month"
-                onClick={() => setView("month")}
-                className={view === "month" ? "bg-primary text-primary-foreground" : ""}
-              >
-                Monthly
-              </TabsTrigger>
-              <TabsTrigger
-                value="overall"
-                onClick={() => setView("overall")}
-                className={view === "overall" ? "bg-primary text-primary-foreground" : ""}
-              >
-                Overall
-              </TabsTrigger>
-            </TabsList>
-          </div>
-          <HabitsCharts habits={habits} view={view} onDeleteHabit={function (habitId: string): void {
-            console.log("onDeleteHabit")
-          } } />
+          <HabitsList
+            habits={habits}
+            onUpdateLog={updateHabitLog}
+            onDeleteHabit={deleteHabit}
+            onUpdateHabit={updateHabit}
+          />
         </TabsContent>
       </Tabs>
     </motion.div>
