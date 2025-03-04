@@ -6,6 +6,7 @@ import Nav from "@/components/nav"
 import Footer from "@/components/footer"
 import { JsonLd } from "@/components/json-ld"
 import { ToastProvider } from "@/components/toast-provider"
+import { Toaster } from "@/components/ui/toaster"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -60,6 +61,7 @@ export default function RootLayout({
             <Footer />
           </div>
         </ToastProvider>
+        <Toaster />
       </body>
     </html>
   )

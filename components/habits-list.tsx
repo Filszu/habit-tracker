@@ -184,10 +184,10 @@ export default function HabitsList({
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-8 gap-2 mb-4">
-        <div className="font-medium text-sm text-muted-foreground md:col-span-1 hidden md:block">
+        <div className="font-medium text-sm text-muted-foreground md:col-span-2 hidden md:block">
           Habit
         </div>
-        <div className="grid grid-cols-7 gap-2 md:col-span-7">
+        <div className="grid grid-cols-7 gap-2 md:col-span-6">
           {weekDays.map((day, i) => (
             <div
               key={i}
