@@ -1,24 +1,27 @@
-import type React from "react"
-import "./globals.css"
-import type { Metadata } from "next"
-import { Inter } from "next/font/google"
-import Nav from "@/components/nav"
-import Footer from "@/components/footer"
-import { JsonLd } from "@/components/json-ld"
-import { ToastProvider } from "@/components/toast-provider"
-import { Toaster } from "@/components/ui/toaster"
+import type React from "react";
+import "./globals.css";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import Nav from "@/components/nav";
+import Footer from "@/components/footer";
+import { JsonLd } from "@/components/json-ld";
+import { ToastProvider } from "@/components/toast-provider";
+import { Toaster } from "@/components/ui/toaster";
+import Script from "next/script";
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "KaizenSteps - Build Better Habits and Track Your Progress",
   description:
     "Track your daily habits, achieve your goals, and become the best version of yourself with our free habit tracking app. Features include Pomodoro timer, statistics, and progress tracking.",
-  keywords: "kaizensteps, habit building, productivity, goal tracking, pomodoro timer, personal development, kaizen",
+  keywords:
+    "kaizensteps, habit building, productivity, goal tracking, pomodoro timer, personal development, kaizen",
   authors: [{ name: "Filshu" }],
   openGraph: {
     title: "KaizenSteps - Build Better Habits",
-    description: "Track your habits and achieve your goals with our free habit tracking app",
+    description:
+      "Track your habits and achieve your goals with our free habit tracking app",
     type: "website",
     url: "https://kaizensteps.vercel.app",
     images: [
@@ -33,17 +36,18 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "KaizenSteps - Build Better Habits",
-    description: "Track your habits and achieve your goals with our free habit tracking app",
+    description:
+      "Track your habits and achieve your goals with our free habit tracking app",
     images: [
       "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Charts--Streamline-Manchester-Tk5dhk8YVjFcUQugxTFLUraQtqoQTB.png",
     ],
   },
-}
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
@@ -62,8 +66,22 @@ export default function RootLayout({
           </div>
         </ToastProvider>
         <Toaster />
+
+        <Script
+          // strategy='lazyOnload'
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_ANALYTICS_ID}`}
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+          
+            gtag('config', '${process.env.GOOGLE_ANALYTICS_ID}');
+          `}
+        </Script>
       </body>
     </html>
-  )
+  );
 }
-
