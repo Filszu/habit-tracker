@@ -1,4 +1,4 @@
-# Kaizen Steps
+# Kaizen Steps - beautiful designed habit tracker
 
 ![Kaizen Steps](https://kaizensteps.vercel.app/imgs/ss/home_page.png)
 
@@ -6,7 +6,7 @@
 [Kaizen Steps](https://kaizensteps.vercel.app/)
 
 ## 📌 About
-Kaizen Steps is a habit-tracking and self-improvement platform designed to help users develop positive habits through incremental progress. The app integrates daily habit tracking, templates, stats visualization, and productivity-enhancing features like the Pomodoro timer with motivational quotes.
+Kaizen Steps is a beautiful designed habit-tracking and self-improvement platform designed to help users develop positive habits through incremental progress. The app integrates daily habit tracking, templates, stats visualization, and productivity-enhancing features like the Pomodoro timer with motivational quotes.
 
 ![About Kaizen](https://kaizensteps.vercel.app/imgs/ss/about_kaizen.png)
 
