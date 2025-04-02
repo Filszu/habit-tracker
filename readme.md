@@ -72,7 +72,7 @@ Contributions are welcome! Feel free to fork the repository and submit pull requ
 ---
 
 ## 📜 License
-This project is licensed under the MIT License.
+This project is licensed under the Freeware License.
 
 ---
 
