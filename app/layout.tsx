@@ -8,6 +8,7 @@ import { JsonLd } from "@/components/json-ld";
 import { ToastProvider } from "@/components/toast-provider";
 import { Toaster } from "@/components/ui/toaster";
 import Script from "next/script";
+import PWARegister from "@/components/ui/pwa-register";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -55,8 +56,14 @@ export default function RootLayout({
         <meta name="theme-color" content="#7c3aed" />
         <link rel="manifest" href="/manifest.json" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="Habits" />
+        <meta name="mobile-web-app-capable" content="yes" />
       </head>
       <body className={inter.className}>
+      <PWARegister />
         <JsonLd />
         <ToastProvider>
           <div className="flex flex-col min-h-screen">

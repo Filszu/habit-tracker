@@ -1,46 +1,60 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import type { Habit } from "@/lib/types"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Progress } from "@/components/ui/progress"
-import { Slider } from "@/components/ui/slider"
-import ConfettiCelebration from "./confetti-celebration"
-import { useState, useEffect } from "react"
+import { motion } from "framer-motion";
+import type { Habit } from "@/lib/types";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Progress } from "@/components/ui/progress";
+import { Slider } from "@/components/ui/slider";
+import ConfettiCelebration from "./confetti-celebration";
+import { useState, useEffect } from "react";
 
 interface TodaysTasksProps {
-  habits: Habit[]
-  onUpdateCompletion: (habitId: string, completed: boolean | number) => void
+  habits: Habit[];
+  onUpdateCompletion: (habitId: string, completed: boolean | number) => void;
 }
 
-export default function TodaysTasks({ habits, onUpdateCompletion }: TodaysTasksProps) {
-  const [showCelebration, setShowCelebration] = useState(false)
-  const today = new Date().toISOString().split("T")[0]
+export default function TodaysTasks({
+  habits,
+  onUpdateCompletion,
+}: TodaysTasksProps) {
+  const [showCelebration, setShowCelebration] = useState(false);
+  const today = new Date().toISOString().split("T")[0];
 
   useEffect(() => {
     if (habits.length > 0) {
       const allCompleted = habits.every((habit) => {
-        const log = habit.logs.find((log) => log.date === today)
-        return log ? (typeof log.value === "boolean" ? log.value : log.value === 100) : false
-      })
+        const log = habit.logs.find((log) => log.date === today);
+        return log
+          ? typeof log.value === "boolean"
+            ? log.value
+            : log.value === 100
+          : false;
+      });
 
       if (allCompleted) {
-        setShowCelebration(true)
+        setShowCelebration(true);
       }
     }
-  }, [habits, today])
+  }, [habits, today]);
 
   return (
     <div className="space-y-4">
       <h2 className="text-2xl font-semibold">Today's Tasks</h2>
       {habits.length === 0 ? (
-        <p className="text-muted-foreground">No tasks for today. Enjoy your day!</p>
+        <p className="text-muted-foreground">
+          No tasks for today. Enjoy your day!
+        </p>
       ) : (
         <ul className="space-y-4">
           {habits.map((habit) => {
-            const log = habit.logs.find((log) => log.date === today)
-            const isCompleted = log ? (typeof log.value === "boolean" ? log.value : log.value === 100) : false
-            const percentageValue = log && typeof log.value === "number" ? log.value : 0
+            const log = habit.logs.find((log) => log.date === today);
+            const isCompleted = log
+              ? typeof log.value === "boolean"
+                ? log.value
+                : log.value === 100
+              : false;
+            const percentageValue =
+              log && typeof log.value === "number" ? log.value : 0;
 
             return (
               <motion.li
@@ -57,10 +71,14 @@ export default function TodaysTasks({ habits, onUpdateCompletion }: TodaysTasksP
                     <Checkbox
                       id={habit.id}
                       checked={isCompleted}
-                      onCheckedChange={(checked) => onUpdateCompletion(habit.id, checked as boolean)}
+                      onCheckedChange={(checked) =>
+                        onUpdateCompletion(habit.id, checked as boolean)
+                      }
                     />
                   ) : (
-                    <span className="text-sm font-medium">{percentageValue}%</span>
+                    <span className="text-sm font-medium">
+                      {percentageValue}%
+                    </span>
                   )}
                 </div>
                 {habit.completionType === "percentage" && (
@@ -70,19 +88,28 @@ export default function TodaysTasks({ habits, onUpdateCompletion }: TodaysTasksP
                       min={0}
                       max={100}
                       step={5}
-                      onValueChange={(value) => onUpdateCompletion(habit.id, value[0])}
+                      onValueChange={(value) =>
+                        onUpdateCompletion(habit.id, value[0])
+                      }
                     />
                     <Progress value={percentageValue} className="h-2" />
                   </div>
                 )}
+                <div>
+                  <button onClick={() => onUpdateCompletion(habit.id, true)}>
+                    Mark Complete
+                  </button>
+                </div>
               </motion.li>
-            )
+            );
           })}
         </ul>
       )}
 
-      <ConfettiCelebration show={showCelebration} onComplete={() => setShowCelebration(false)} />
+      <ConfettiCelebration
+        show={showCelebration}
+        onComplete={() => setShowCelebration(false)}
+      />
     </div>
-  )
+  );
 }
-
