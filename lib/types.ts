@@ -14,3 +14,8 @@ export interface Habit {
 }
 
 export type View = "week" | "month" | "overall";
+
+export interface NotificationSettings {
+  enabled: boolean;
+  times: string[]; // Array of time strings in HH:mm format (max 3)
+}

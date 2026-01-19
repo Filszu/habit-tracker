@@ -9,6 +9,7 @@ import { ToastProvider } from "@/components/toast-provider";
 import { Toaster } from "@/components/ui/toaster";
 import Script from "next/script";
 import PWARegister from "@/components/ui/pwa-register";
+import NotificationScheduler from "@/components/notification-scheduler";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -64,6 +65,7 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
       <PWARegister />
+      <NotificationScheduler />
         <JsonLd />
         <ToastProvider>
           <div className="flex flex-col min-h-screen">

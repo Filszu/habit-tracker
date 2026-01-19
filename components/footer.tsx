@@ -7,11 +7,12 @@ export default function Footer() {
       <div className="max-w-4xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
         <div className="mb-4 md:mb-0">
           <p className="text-sm text-gray-600">© {new Date().getFullYear()} Habits Tracker</p>
-          <p className="text-sm text-gray-600">Created with ❤️ by Filshu</p>
+          <p className="text-sm text-gray-600">Created with ❤️ by 
+            <a href="https://filszu.vercel.app" className="text-blue-500 hover:text-blue-600" target="_blank"> Filshu</a></p>
           <p className="text-sm text-gray-600 mt-2">
-            Support project:{" "}
-            <a href="" className="hover:underline">
-              aaa
+            Support project:{"  "}
+            <a href="https://buymeacoffee.com/filshu" className="hover:underline text-yellow-500 font-bold">
+              here☕
             </a>
           </p>
         </div>
